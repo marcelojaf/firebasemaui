@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Logging;
+using Microsoft.Maui.LifecycleEvents;
 
 namespace FirebaseMauiApp
 {
@@ -9,6 +10,7 @@ namespace FirebaseMauiApp
             var builder = MauiApp.CreateBuilder();
             builder
                 .UseMauiApp<App>()
+                .RegisterFirebase()
                 .ConfigureFonts(fonts =>
                 {
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
@@ -16,10 +18,26 @@ namespace FirebaseMauiApp
                 });
 
 #if DEBUG
-    		builder.Logging.AddDebug();
+            builder.Logging.AddDebug();
 #endif
 
             return builder.Build();
+        }
+
+        public static MauiAppBuilder RegisterFirebase(this MauiAppBuilder builder)
+        {
+            builder.ConfigureLifecycleEvents(events =>
+            {
+                events.AddAndroid(android =>
+                {
+                    android.OnCreate((activity, bundle) =>
+                    {
+                        Firebase.FirebaseApp.InitializeApp(activity);
+                    });
+                });
+            });
+
+            return builder;
         }
     }
 }
