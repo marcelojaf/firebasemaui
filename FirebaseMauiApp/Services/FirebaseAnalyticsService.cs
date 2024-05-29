@@ -1,5 +1,7 @@
-﻿using Android.OS;
-using Firebase.Analytics;
+﻿using Firebase.Analytics;
+#if IOS
+using Foundation;
+#endif
 
 namespace FirebaseMauiApp.Services
 {
@@ -42,7 +44,7 @@ namespace FirebaseMauiApp.Services
                 return;
             }
 
-            var bundle = new Bundle();
+            var bundle = new Android.OS.Bundle();
             foreach (var param in parameters)
             {
                 bundle.PutString(param.Key, param.Value);

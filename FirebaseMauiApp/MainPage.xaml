@@ -36,6 +36,12 @@
                 Text="Crash the App"
                 Clicked="CrashBtn_Clicked"
                 HorizontalOptions="Fill"/>
+
+            <Button
+                x:Name="CatchCrashBtn"
+                Text="Catch a Crash"
+                Clicked="CatchCrashBtn_Clicked"
+                HorizontalOptions="Fill"/>
         </VerticalStackLayout>
     </ScrollView>
 

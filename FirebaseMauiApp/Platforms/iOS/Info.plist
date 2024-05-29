@@ -28,5 +28,7 @@
 	</array>
 	<key>XSAppIconAssets</key>
 	<string>Assets.xcassets/appicon.appiconset</string>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<true/>
 </dict>
 </plist>
