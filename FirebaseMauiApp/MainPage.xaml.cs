@@ -5,9 +5,8 @@ namespace FirebaseMauiApp
 {
     public partial class MainPage : ContentPage
     {
-        private FirebaseAnalyticsService _firebaseAnalyticsService;
-        private FirebaseCrashlyticsService _firebaseCrashlyticsService;
-        private FirebaseCrashlyticsService tempFirebaseCrashApp;
+        private readonly FirebaseAnalyticsService _firebaseAnalyticsService;
+        private readonly FirebaseCrashlyticsService _firebaseCrashlyticsService;
 
         int count = 0;
 
@@ -38,7 +37,7 @@ namespace FirebaseMauiApp
 
         void CrashBtn_Clicked(System.Object sender, System.EventArgs e)
         {
-            tempFirebaseCrashApp.Log(new Exception());
+            throw new Exception(">>>>>> NOT CATCHED EXCEPTION!!!!!");
         }
 
         void CatchCrashBtn_Clicked(System.Object sender, System.EventArgs e)
@@ -46,7 +45,7 @@ namespace FirebaseMauiApp
             try
             {
                 // Simulate an app crash by throwing an exception
-                throw new Exception("Simulated crash");
+                throw new Exception(">>>>>> SIMULATED CRASH!!!!");
             }
             catch (Exception ex)
             {

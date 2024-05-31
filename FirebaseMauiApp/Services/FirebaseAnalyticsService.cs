@@ -34,6 +34,7 @@ namespace FirebaseMauiApp.Services
 
         var parametersDictionary =
             NSDictionary<NSString, NSObject>.FromObjectsAndKeys(values.ToArray(), keys.ToArray(), keys.Count);
+
         Analytics.LogEvent(eventName, parametersDictionary);
 #else
             var firebaseAnalytics = FirebaseAnalytics.GetInstance(Platform.CurrentActivity);

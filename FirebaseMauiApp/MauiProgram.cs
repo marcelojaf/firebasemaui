@@ -36,7 +36,7 @@ namespace FirebaseMauiApp
                 events.AddAndroid(android => android
                 .OnCreate((activity, bundle) => Firebase.FirebaseApp.InitializeApp(activity)));
 #else
-                events.AddiOS(iOS => iOS.FinishedLaunching((app, launchOptions) => {
+                events.AddiOS(iOS => iOS.FinishedLaunching((App, launchOptions) => {
                     Firebase.Core.App.Configure();
                     Firebase.Crashlytics.Crashlytics.SharedInstance.Init();
                     Firebase.Crashlytics.Crashlytics.SharedInstance.SetCrashlyticsCollectionEnabled(true);
