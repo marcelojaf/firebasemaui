@@ -14,7 +14,7 @@
 		<ApplicationTitle>FirebaseMaui</ApplicationTitle>
 
 		<!-- App Identifier -->
-		<ApplicationId>com.companyname.firebasemaui</ApplicationId>
+		<ApplicationId>com.cklabs.mauilytics</ApplicationId>
 
 		<!-- Versions -->
 		<ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
@@ -47,5 +47,21 @@
 		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="$(MauiVersion)" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="8.0.0" />
 	</ItemGroup>
+
+  <!-- iOS specific configuration -->
+  <PropertyGroup Condition="$(TargetFramework.Contains('-ios'))">
+    <RuntimeIdentifier>ios-arm64</RuntimeIdentifier>
+    <CodesignKey>Apple Development</CodesignKey>
+    <CodesignEntitlements>Platforms\iOS\Entitlements.plist</CodesignEntitlements>
+  </PropertyGroup>
+
+  <!-- Android specific configuration -->
+  <ItemGroup Condition="$(TargetFramework.Contains('-android'))">
+    <GoogleServicesJson Include="Platforms\Android\google-services.json" />
+  </ItemGroup>
+
+  <ItemGroup Condition="$(TargetFramework.Contains('-ios'))">
+    <BundleResource Include="Platforms\iOS\GoogleService-Info.plist" />
+  </ItemGroup>
 
 </Project>
