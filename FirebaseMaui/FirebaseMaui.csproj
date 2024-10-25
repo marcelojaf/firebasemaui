@@ -49,22 +49,35 @@
 	</ItemGroup>
 
 	<!-- Android specific packages -->
-	<ItemGroup Condition="$(TargetFramework.Contains('-android'))">
-		<GoogleServicesJson Include="Platforms\Android\google-services.json" />
-	</ItemGroup>
+  <ItemGroup Condition="'$(TargetFramework)' == 'net8.0-android'">
+    <PackageReference Include="Xamarin.Firebase.Analytics">
+      <Version>121.1.1</Version>
+    </PackageReference>
+    <PackageReference Include="Xamarin.Firebase.Core">
+      <Version>121.1.1</Version>
+    </PackageReference>
+    <GoogleServicesJson Include="Platforms\Android\google-services.json" />
+  </ItemGroup>
 
 	<!-- Pacotes específicos para iOS -->
-	<ItemGroup Condition="$(TargetFramework.Contains('-ios'))">
+  <ItemGroup Condition="'$(TargetFramework)' == 'net8.0-ios'">
+    <PackageReference Include="Xamarin.Firebase.iOS.Analytics">
+      <Version>8.10.0.1</Version>
+    </PackageReference>
+    <PackageReference Include="Xamarin.Firebase.iOS.Core">
+      <Version>8.10.0.1</Version>
+    </PackageReference>
 		<BundleResource Include="Platforms\iOS\GoogleService-Info.plist" />
 	</ItemGroup>
 
+
 	<!-- iOS specific configuration -->
-	<PropertyGroup Condition="$(TargetFramework.Contains('-ios'))">
+	<PropertyGroup Condition="'$(TargetFramework)' == 'net8.0-ios'">
 		<RuntimeIdentifier>ios-arm64</RuntimeIdentifier>
 	</PropertyGroup>
 
 	<!-- Android specific configuration -->
-	<PropertyGroup Condition="$(TargetFramework.Contains('-android'))">
+	<PropertyGroup Condition="'$(TargetFramework)' == 'net8.0-android'">
 		<AndroidUseAapt2>true</AndroidUseAapt2>
 		<AndroidEnableMultiDex>true</AndroidEnableMultiDex>
 	</PropertyGroup>

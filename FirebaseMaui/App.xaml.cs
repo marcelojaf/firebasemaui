@@ -1,12 +1,19 @@
-﻿namespace FirebaseMaui
+﻿using Microsoft.Extensions.DependencyInjection;
+using System;
+
+namespace FirebaseMaui
 {
     public partial class App : Application
     {
-        public App()
+        private readonly IServiceProvider _serviceProvider;
+
+        public App(IServiceProvider serviceProvider)
         {
             InitializeComponent();
 
-            MainPage = new AppShell();
+            _serviceProvider = serviceProvider;
+            MainPage = _serviceProvider.GetRequiredService<AppShell>();
+
         }
     }
 }

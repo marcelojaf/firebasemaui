@@ -1,14 +1,32 @@
-﻿using System.Diagnostics;
+﻿using FirebaseMaui.Interfaces;
+using FirebaseMaui.Services;
+using System.Diagnostics;
 
 namespace FirebaseMaui
 {
     public partial class MainPage : ContentPage
     {
         private int counter = 0;
+        private readonly IFirebaseAnalyticsService _analytics;
 
-        public MainPage()
+        public MainPage(IFirebaseAnalyticsService analytics)
         {
             InitializeComponent();
+            _analytics = analytics;
+
+            LogPageView();
+        }
+
+        private void LogPageView()
+        {
+            try
+            {
+                _analytics.Log("MainPage");
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"Failed to log page view: {ex.Message}");
+            }
         }
 
         /// <summary>
@@ -21,13 +39,13 @@ namespace FirebaseMaui
 
             try
             {
-                var parameters = new Dictionary<string, object>
+                var parameters = new Dictionary<string, string>
                 {
-                    { "counter_value", counter },
-                    { "timestamp", DateTimeOffset.UtcNow.ToUnixTimeMilliseconds() }
+                    { "counter_value", counter.ToString() },
+                    { "timestamp", DateTimeOffset.UtcNow.ToUnixTimeMilliseconds().ToString() }
                 };
 
-                //_analytics?.LogEvent("counter_increment", parameters);
+                _analytics.Log("counter_increment", parameters);
             }
             catch (Exception ex)
             {
@@ -52,14 +70,14 @@ namespace FirebaseMaui
                 // Log to Analytics
                 try
                 {
-                    var parameters = new Dictionary<string, object>
+                    var parameters = new Dictionary<string, string>
                     {
                         { "error_description", ex.Message },
-                        { "error_code", -1 },
-                        { "timestamp", DateTimeOffset.UtcNow.ToUnixTimeMilliseconds() }
+                        { "error_code", "-1" },
+                        { "timestamp", DateTimeOffset.UtcNow.ToUnixTimeMilliseconds().ToString() }
                     };
 
-                    //_analytics?.LogEvent("controlled_exception", parameters);
+                    _analytics?.Log("controlled_exception", parameters);
                 }
                 catch (Exception analyticsEx)
                 {

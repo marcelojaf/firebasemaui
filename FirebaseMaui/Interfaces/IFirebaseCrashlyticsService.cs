@@ -1,6 +1,6 @@
 ﻿namespace FirebaseMaui.Interfaces
 {
-    public interface IFirebaseCrashlytics
+    public interface IFirebaseCrashlyticsService
     {
         void RecordException(Exception exception);
     }
