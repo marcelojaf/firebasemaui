@@ -33,28 +33,12 @@
 		<!-- Images -->
 		<MauiImage Include="Resources\Images\*" />
 		<MauiImage Update="Resources\Images\dotnet_bot.png" Resize="True" BaseSize="300,185" />
-
+    <MauiImage Update="Resources\Images\firebase_logo.png" Resize="True" BaseSize="704,198" />
 		<!-- Custom Fonts -->
 		<MauiFont Include="Resources\Fonts\*" />
 
 		<!-- Raw Assets (also remove the "Resources\Raw" prefix) -->
 		<MauiAsset Include="Resources\Raw\**" LogicalName="%(RecursiveDir)%(Filename)%(Extension)" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <AndroidResource Remove="Resources\Images\firebase_logo.png" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <MauiImage Remove="Resources\Images\firebase_logo.png" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <None Remove="Resources\Images\firebase_logo.png" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <Content Include="Resources\Images\firebase_logo.png" />
 	</ItemGroup>
 
 	<!-- Pacotes comuns para todas as plataformas -->
@@ -66,20 +50,11 @@
 
 	<!-- Android specific packages -->
 	<ItemGroup Condition="$(TargetFramework.Contains('-android'))">
-		<PackageReference Include="Xamarin.Firebase.Core" Version="121.1.1.1" />
-		<PackageReference Include="Xamarin.Firebase.Analytics" Version="121.3.0.1" />
-		<PackageReference Include="Xamarin.Firebase.Crashlytics" Version="118.3.7.1" />
-		<PackageReference Include="Xamarin.Google.Android.Material" Version="1.10.0.2" />
-		<PackageReference Include="Xamarin.AndroidX.Collection" Version="1.3.0.2" ExcludeAssets="build" />
-		<PackageReference Include="Xamarin.AndroidX.Collection.Ktx" Version="1.3.0.2" />
 		<GoogleServicesJson Include="Platforms\Android\google-services.json" />
 	</ItemGroup>
 
 	<!-- Pacotes específicos para iOS -->
 	<ItemGroup Condition="$(TargetFramework.Contains('-ios'))">
-		<PackageReference Include="Xamarin.Firebase.iOS.Core" Version="8.10.0.3" />
-		<PackageReference Include="Xamarin.Firebase.iOS.Analytics" Version="8.10.0.3" />
-		<PackageReference Include="Xamarin.Firebase.iOS.Crashlytics" Version="8.10.0.3" />
 		<BundleResource Include="Platforms\iOS\GoogleService-Info.plist" />
 	</ItemGroup>
 
